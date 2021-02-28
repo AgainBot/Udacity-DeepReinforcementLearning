@@ -53,6 +53,6 @@ To watch a trained smart agent, follow the instructions below:
 ### Results
 
 I also included scores plots for all the three models I employed, they solved the challenge respectively in 457, 399 and 393 episodes.
-| DQN | Dueling DQN | Double DQN |
+| DQN | Double DQN | Dueling DQN |
 :-------------------------:|:-------------------------:|:-------------------------:
 ![dqn-scores](https://github.com/AgainBot/Udacity-DeepReinforcementLearning/blob/main/Project1-Navigation/results/dqn_scores.png) |  ![ddqn-scores](https://github.com/AgainBot/Udacity-DeepReinforcementLearning/blob/main/Project1-Navigation/results/ddqn_scores.png) | ![duelingdqn-scores](https://github.com/AgainBot/Udacity-DeepReinforcementLearning/blob/main/Project1-Navigation/results/duelingdqn_scores.png) 
