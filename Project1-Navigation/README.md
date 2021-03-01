@@ -34,6 +34,40 @@ The task is episodic, and in order to solve the environment, your agent must get
 
 2. Place the file in the DRLND GitHub repository, in the `p1_navigation/` folder, and unzip (or decompress) the file. 
 
+### Dependencies
+
+To set up your python environment to run the code in this repository, follow the instructions below.
+
+1. Create (and activate) a new environment with Python 3.6.
+
+	- __Linux__ or __Mac__: 
+	```bash
+	conda create --name drlnd python=3.6
+	source activate drlnd
+	```
+	- __Windows__: 
+	```bash
+	conda create --name drlnd python=3.6 
+	activate drlnd
+	```
+	
+2. Follow the instructions in [this repository](https://github.com/openai/gym) to perform a minimal install of OpenAI gym.  
+	- Next, install the **classic control** environment group by following the instructions [here](https://github.com/openai/gym#classic-control).
+	- Then, install the **box2d** environment group by following the instructions [here](https://github.com/openai/gym#box2d).
+	
+3. Clone the repository (if you haven't already!), and navigate to the `python/` folder.  Then, install several dependencies.
+```bash
+git clone https://github.com/udacity/deep-reinforcement-learning.git
+cd deep-reinforcement-learning/python
+pip install .
+```
+
+4. Create an [IPython kernel](http://ipython.readthedocs.io/en/stable/install/kernel_install.html) for the `drlnd` environment.  
+```bash
+python -m ipykernel install --user --name drlnd --display-name "drlnd"
+```
+5. Before running code in a notebook, change the kernel to match the `drlnd` environment by using the drop-down `Kernel` menu. 
+
 ### Core Files in this Repo
 - `dqn_agent.py`: adapted the original code from lessons by allowing ddqn update method
 - `model.py`: added support for Dueling network
@@ -42,13 +76,25 @@ The task is episodic, and in order to solve the environment, your agent must get
 - `duelingdqn.pth`: saved model weights for the Dueling DDQN
 - `Navigation.ipynb`: notebook containing the solution and the plots of scores
 
-### Instructions
+### Instructions to run the code
 
-To watch a trained smart agent, follow the instructions below:
+- To replicate the result, after setting up the environment as instructed in Dependencies section, you can run the notebook `Navigation.ipynb` step by step. The notebook allows you to switch bewteen three models easily, specifically, you can do `agent = Agent(nnstructure=QNetwork, state_size=state_size, action_size=action_size, seed=72)` as in part 3 in the notebook to instantiate a DQN agent, `agent = Agent(nnstructure=QNetwork, state_size=state_size, action_size=action_size, seed=72, update_method='ddqn')` for a DDQN agent and `agent = Agent(nnstructure=DuelingQNetwork, state_size=state_size, action_size=action_size, seed=72, update_method='ddqn')` for a Dueling DQN
 
-- **DQN**: Load the checkpoint `dqn.pth` and initialize the Agent object with `nnstrucutre` being `QNetwork` and `update_method` being `dqn`.
-- **Double DQN**: Load the checkpoint `ddqn.pth` and initialize the Agent object with `nnstrucutre` being `QNetwork` and `update_method` being `ddqn`.
-- **Dueling DQN**: Load the checkpoint `duelingdqn.pth` and initialize the Agent object with `nnstrucutre` being `DuelingQNetwork` and `update_method` being `ddqn`.
+- To tweak the models, you can either go to the `dqn_agent.py` or the `model.py` file.
+    -  In `dqn_agent.py`, you can tune the following hyperparamters: 
+        - BUFFER_SIZE = int(1e5)  # replay buffer size
+        - BATCH_SIZE = 64         # minibatch size
+        - GAMMA = 0.99            # discount factor
+        - TAU = 1e-3              # for soft update of target parameters
+        - LR = 5e-4               # learning rate 
+        - UPDATE_EVERY = 4        # how often to update the network
+    - In `model.py`, you can modify the NN structure by editing the `QNetwork` and `DuelingQNetwork` classes.
+    
+- To watch a trained smart agent, follow the instructions below:
+
+    - **DQN**: Load the checkpoint `dqn.pth` and initialize the Agent object with `nnstrucutre` being `QNetwork` and `update_method` being `dqn`.
+    - **Double DQN**: Load the checkpoint `ddqn.pth` and initialize the Agent object with `nnstrucutre` being `QNetwork` and `update_method` being `ddqn`.
+    - **Dueling DQN**: Load the checkpoint `duelingdqn.pth` and initialize the Agent object with `nnstrucutre` being `DuelingQNetwork` and `update_method` being `ddqn`.
 
 ### Results
 
